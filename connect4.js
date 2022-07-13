@@ -18,7 +18,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   for (let row = 0; row < HEIGHT; row++) {
     board.push([]);
     for (let col = 0; col < WIDTH; col++) {
@@ -30,20 +29,17 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
-  const board = document.getElementById("board");
+  const htmlBoard = document.getElementById("board");
 
-  // TODO: add comment for this code
   // add top row of columns, set column-top id, adds event listener for click, runs handleClick function
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
-  // TODO: add comment for this code
   // creates td headCell with id 'cell', appending to tr
-  for (let cell = 0; cell < WIDTH; cell++) {
+  for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
-    headCell.setAttribute("id", cell);
+    headCell.setAttribute("id", x);
     top.append(headCell);
   }
   htmlBoard.append(top);
@@ -52,18 +48,13 @@ function makeHtmlBoard() {
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
     const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
       const cell = document.createElement("td");
-      // TODO: add an id, y-x, to the above table cell element
-      cell.setAttribute("id", y - x);
+      cell.setAttribute("id", `${y}-${x}`);
       // you'll use this later, so make sure you use y-x
-      // TODO: append the table cell to the table row
       row.appendChild(cell);
     }
-    // TODO: append the row to the html board
     htmlBoard.append(row);
   }
 }
