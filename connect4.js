@@ -63,7 +63,12 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  for(let y = HEIGHT -1; y >= 0; y--){
+    if(board[y][x] === null){
+      return y;
+    }
+  }
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -113,10 +118,8 @@ function handleClick(evt) {
   // switch players
   if (currPlayer === 1) {
     currPlayer = 2;
-    console.log("player 1!!");
   } else {
     currPlayer = 1;
-    console.log("player 2!!");
   }
 }
 
