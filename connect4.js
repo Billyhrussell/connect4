@@ -70,7 +70,7 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   const piece = document.createElement("div");
-  piece.classList.add('piece');
+  piece.classList.add("piece");
   piece.classList.add(`p${currPlayer}`);
 
   const placement = document.getElementById(`${y}-${x}`);
@@ -87,16 +87,16 @@ function endGame(msg) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  var x = +evt.target.id;
+  let x = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
-  var y = findSpotForCol(x);
+  let y = findSpotForCol(x);
   if (y === null) {
     return;
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
+  board[y][x] = currPlayer;
   placeInTable(y, x);
 
   // check for win
@@ -105,10 +105,19 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  if (board.includes(null)) {
+    console.log("game ended");
+    return endGame();
+  }
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+  if (currPlayer === 1) {
+    currPlayer = 2;
+    console.log("player 1!!");
+  } else {
+    currPlayer = 1;
+    console.log("player 2!!");
+  }
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
